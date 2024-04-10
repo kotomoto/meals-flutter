@@ -4,6 +4,7 @@ import 'package:meals/models/category.dart';
 import 'package:meals/models/meal.dart';
 import 'package:meals/screens/meals.dart';
 import 'package:meals/widgets/category_grid_item.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class CategoriesScreen extends StatefulWidget {
   const CategoriesScreen({
@@ -75,12 +76,11 @@ class _CategoriesScreenState extends State<CategoriesScreen> with SingleTickerPr
             )
         ],
       ),
-      builder: (context, child) => Padding(
-        padding: EdgeInsets.only(
-          top: 40 - _animationController.value * 40,
-          left: 10 - _animationController.value * 10,
-          right: 10 - _animationController.value * 10,
-        ),
+      builder: (context, child) => SlideTransition(
+        position: Tween(
+          begin: const Offset(0, 0.3),
+          end: const Offset(0, 0),
+        ).animate(CurvedAnimation(parent: _animationController, curve: Curves.easeInOut)),
         child: child,
       ),
     );
